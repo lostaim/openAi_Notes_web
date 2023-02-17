@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import cors from 'cors';
 import { Configuration,OpenAIApi } from 'openai';
 
+
 dotenv.config();
 
 const configuration = new Configuration({
@@ -26,7 +27,19 @@ app.post('/', async(req,res)=>{
 
         const respose = await  openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `${prompt}`,
+            prompt: `
+            Answer like you are asked about information for MITWPU.
+            Dean : Shubhlaxmi joshi,
+            School of Computer Science,
+            Who created this : Deepak,
+            TYBCA is a class of 120 students divided in to two division A,B 61 in A and 59 In B division,
+            who are Faculty memebers in SOCS: 
+            1)Kanchan Shende, 
+            2)Punam Nikam , 
+            3)Madhuri Joshi, 
+            4)Kavita Ahire,
+            5)Sachin Bhoite
+            ${prompt}`,
             temperature: 1,
             max_tokens: 3000,
             top_p: 1,
